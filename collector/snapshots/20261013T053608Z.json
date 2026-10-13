@@ -1,0 +1,17 @@
+{
+  "collected_at": "2026-10-13T05:36:08.108574+00:00",
+  "bridges": [
+    {
+      "bridge": "prisma",
+      "url": "https://cge6g9qi3y4uxioefvdim74l.nrt.prisma.build/mcp",
+      "ok": false,
+      "error": "ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+    },
+    {
+      "bridge": "railway",
+      "url": "https://preview-e096be56a9a31735.up.railway.app/mcp",
+      "ok": false,
+      "error": "ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+    }
+  ]
+}

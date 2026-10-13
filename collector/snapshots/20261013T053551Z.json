@@ -1,0 +1,17 @@
+{
+  "collected_at": "2026-10-13T05:35:51.985859+00:00",
+  "bridges": [
+    {
+      "bridge": "prisma",
+      "url": "https://cge6g9qi3y4uxioefvdim74l.nrt.prisma.build/mcp",
+      "ok": false,
+      "error": "TypeError: streamable_http_client() got an unexpected keyword argument 'headers'"
+    },
+    {
+      "bridge": "railway",
+      "url": "https://preview-e096be56a9a31735.up.railway.app/mcp",
+      "ok": false,
+      "error": "TypeError: streamable_http_client() got an unexpected keyword argument 'headers'"
+    }
+  ]
+}
