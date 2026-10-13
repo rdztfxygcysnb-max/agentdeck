@@ -89,6 +89,9 @@ async def main():
     path = f"snapshots/{stamp}.json"
     with open(path, "w") as f:
         json.dump(snapshot, f, ensure_ascii=False, indent=2)
+    # The static dashboard always reads this one; no need to guess filenames.
+    with open("snapshots/latest.json", "w") as f:
+        json.dump(snapshot, f, ensure_ascii=False, indent=2)
     for r in results:
         if r["ok"]:
             print(f"[{r['bridge']}] OK tools={r.get('tools')} notes={r.get('notes_count')}")

@@ -1,0 +1,119 @@
+/* AgentDeck — 暖纸浅色主题 + 橡皮筋动效 */
+:root {
+  --paper: #faf6ee;
+  --paper-deep: #f3ecdd;
+  --ink: #2c2620;
+  --ink-soft: #6f6455;
+  --card: #fffdf8;
+  --line: #e8ddc9;
+  --accent: #c96f2e;
+  --accent-soft: #f6e3cd;
+  --green: #4d9e5f;
+  --red: #d05252;
+  --radius: 18px;
+  --shadow: 0 6px 24px rgba(120, 90, 50, .10), 0 1px 3px rgba(120, 90, 50, .12);
+  --bounce: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  min-height: 100vh;
+}
+
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { display: flex; gap: 12px; align-items: center; }
+.logo {
+  font-size: 28px; color: var(--accent);
+  display: inline-block;
+  animation: logoWobble 5s ease-in-out infinite;
+}
+@keyframes logoWobble {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  8% { transform: rotate(-14deg) scale(1.18); }
+  16% { transform: rotate(10deg) scale(.96); }
+  24% { transform: rotate(0deg) scale(1); }
+}
+.brand h1 { margin: 0; font-size: 20px; letter-spacing: .5px; }
+.sub { margin: 2px 0 0; font-size: 12px; color: var(--ink-soft); }
+
+.live-dot { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-soft); }
+.live-dot span {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--red);
+  transition: transform .3s var(--bounce), background .3s;
+}
+.live-dot.ok span { background: var(--green); animation: pulse 2.4s ease-in-out infinite; }
+.live-dot.ok em { color: var(--green); font-style: normal; }
+@keyframes pulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.35);} }
+
+.deck {
+  max-width: 520px; margin: 0 auto;
+  padding: 16px 16px 40px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  transform-origin: 50% 0%;
+  animation: cardIn .55s var(--bounce) backwards;
+}
+.deck .card:nth-child(2) { animation-delay: .08s; }
+.deck .card:nth-child(3) { animation-delay: .16s; }
+.deck .card:nth-child(n+4) { animation-delay: .24s; }
+@keyframes cardIn {
+  from { transform: scale(.6) translateY(26px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+.card:active { transform: scale(.985); transition: transform .18s var(--bounce); }
+
+.card-head { display: flex; align-items: center; gap: 10px; }
+.status { width: 12px; height: 12px; border-radius: 50%; background: var(--red); flex: none; }
+.card.up .status { background: var(--green); animation: pulse 2.4s ease-in-out infinite; }
+.card-head h2 { margin: 0; font-size: 17px; flex: 1; text-transform: capitalize; }
+.stamp { font-size: 11px; color: var(--ink-soft); }
+
+.tools { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 4px; }
+.tools code {
+  font-size: 11px; font-family: ui-monospace, Menlo, monospace;
+  background: var(--paper-deep); border: 1px solid var(--line);
+  padding: 3px 8px; border-radius: 999px; color: var(--ink-soft);
+}
+
+.notes { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.notes li {
+  font-size: 13px; line-height: 1.55;
+  background: var(--paper); border: 1px dashed var(--line);
+  border-radius: 12px; padding: 9px 12px;
+  word-break: break-word;
+}
+.empty { display: none; font-size: 13px; color: var(--ink-soft); margin: 10px 0 0; }
+.card.down .empty { display: block; }
+.card.down .notes, .card.down .tools { display: none; }
+
+.err {
+  background: #fdf1ec; border: 1px solid #ecc9b8; color: #8a4a2b;
+  border-radius: 12px; padding: 10px 14px; font-size: 13px; margin-top: 10px;
+}
+
+.foot { text-align: center; font-size: 11px; color: var(--ink-soft); padding: 0 0 28px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

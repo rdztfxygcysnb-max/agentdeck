@@ -10,10 +10,16 @@ Built for [DEV Hacktoberfest Week 2 (2026)](https://dev.to/challenges/hacktoberf
 
 - `collector/` — MCP client that polls the phone-bridge MCP servers (Prisma,
   Railway) and snapshots agent activity into `collector/snapshots/`.
-- `dashboard/` — phone-first web UI (coming Day 2).
+  Runs hourly via cron; the dashboard always reads `snapshots/latest.json`.
+- `dashboard/` — phone-first static web UI (no backend, no sleep):
+  deploy to Cloudflare Pages, reads the latest snapshot and renders
+  one card per bridge: status, tools, recent activity.
 
 ## Day 1 status
 
 - [x] New repo created within the challenge window
 - [x] Collector talks to both bridges and pulls the first real activity stream
-- [ ] Phone dashboard UI (Day 2)
+- [x] Hourly snapshot cron set (keeps newest 48, auto-pushes to main)
+- [x] Static dashboard scaffold (warm-paper theme, rubber-band motion)
+- [ ] Phone dashboard UI polish (Day 2)
+- [ ] Deploy to Cloudflare Pages + .tech domain (Day 4)

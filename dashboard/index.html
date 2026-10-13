@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AgentDeck — 你的 agent 舰队，一屏尽览</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◈</span>
+    <div>
+      <h1>AgentDeck</h1>
+      <p class="sub">手机上一屏，看遍所有 coding agent</p>
+    </div>
+  </div>
+  <div class="live-dot" id="liveDot" title="数据状态"><span></span><em id="liveText">同步中</em></div>
+</header>
+
+<main id="deck" class="deck" aria-live="polite"></main>
+
+<template id="cardTpl">
+  <section class="card">
+    <div class="card-head">
+      <span class="status"></span>
+      <h2 class="name"></h2>
+      <time class="stamp"></time>
+    </div>
+    <div class="tools"></div>
+    <ul class="notes"></ul>
+    <p class="empty">暂无活动记录</p>
+  </section>
+</template>
+
+<footer class="foot">
+  <p>AgentDeck · DEV Hacktoberfest Week 2 参赛作品</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
