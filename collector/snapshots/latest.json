@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-10-13T06:06:28.893562+00:00",
+  "collected_at": "2026-10-13T07:06:00.257075+00:00",
   "bridges": [
     {
       "bridge": "prisma",
@@ -10,10 +10,12 @@
         "web_fetch",
         "notes_write",
         "notes_read",
-        "notes_list"
+        "notes_list",
+        "pi_task_submit",
+        "pi_task_status"
       ],
       "notes": [
-        "selftest"
+        "(none)"
       ],
       "notes_count": 1
     },
