@@ -15,6 +15,12 @@
     "snapshots/latest.json"
   ];
 
+  // AI 摘要（Day 3 summarize.py 产物；缺失或未配置 key 时静默跳过）
+  var DIGEST_URLS = [
+    "../collector/snapshots/digest.json",
+    "snapshots/digest.json"
+  ];
+
   var BRIDGE_META = {
     prisma:  { label: "Prisma 中继", sub: "云端 · 东京 · 手机 agent 直连" },
     railway: { label: "Railway 盒子", sub: "试用 VM · 需手机 agent 拉起" }
@@ -128,6 +134,28 @@
       return;
     }
     bridges.forEach(function (b, i) { renderBridge(b, snap.collected_at, i); });
+    loadDigest();
+  }
+
+  // 可选：AI 一句话摘要，有就拼到舰队副标题里，没有就当没这回事
+  function loadDigest() {
+    tryDigest(0);
+  }
+
+  function tryDigest(i) {
+    if (i >= DIGEST_URLS.length) { return; }
+    fetch(DIGEST_URLS[i], { cache: "no-store" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        var line = d && d.digest && (d.digest.headline_zh || d.digest.headline_en);
+        if (line) {
+          fleetSub.textContent = fleetSub.textContent + " · AI：" + line;
+        }
+      })
+      .catch(function () { tryDigest(i + 1); });
   }
 
   function fail(msg) {
