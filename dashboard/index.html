@@ -3,33 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8f4ea">
 <title>AgentDeck — 你的 agent 舰队，一屏尽览</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="topbar">
   <div class="brand">
-    <span class="logo">◈</span>
+    <span class="logo" aria-hidden="true">◈</span>
     <div>
       <h1>AgentDeck</h1>
-      <p class="sub">手机上一屏，看遍所有 coding agent</p>
+      <p class="sub" id="fleetSub">正在连接舰队…</p>
     </div>
   </div>
   <div class="live-dot" id="liveDot" title="数据状态"><span></span><em id="liveText">同步中</em></div>
 </header>
 
-<main id="deck" class="deck" aria-live="polite"></main>
+<main id="deck" class="deck" aria-live="polite">
+  <section class="card skeleton" aria-hidden="true">
+    <div class="card-head">
+      <span class="status"></span>
+      <div class="head-text"><div class="sk-line sk-w40"></div><div class="sk-line sk-w60"></div></div>
+    </div>
+    <div class="sk-block"></div>
+    <div class="sk-line"></div>
+    <div class="sk-line sk-w80"></div>
+  </section>
+  <section class="card skeleton" aria-hidden="true">
+    <div class="card-head">
+      <span class="status"></span>
+      <div class="head-text"><div class="sk-line sk-w40"></div><div class="sk-line sk-w60"></div></div>
+    </div>
+    <div class="sk-block"></div>
+    <div class="sk-line"></div>
+    <div class="sk-line sk-w80"></div>
+  </section>
+</main>
 
 <template id="cardTpl">
   <section class="card">
     <div class="card-head">
-      <span class="status"></span>
-      <h2 class="name"></h2>
+      <span class="status" aria-hidden="true"></span>
+      <div class="head-text">
+        <h2 class="name"></h2>
+        <p class="site-sub"></p>
+      </div>
       <time class="stamp"></time>
     </div>
-    <div class="tools"></div>
-    <ul class="notes"></ul>
-    <p class="empty">暂无活动记录</p>
+    <div class="now">
+      <p class="now-label">最新动态</p>
+      <p class="now-text"></p>
+    </div>
+    <ul class="timeline"></ul>
+    <details class="caps">
+      <summary class="caps-sum"></summary>
+      <div class="tools"></div>
+    </details>
+    <p class="empty"></p>
   </section>
 </template>
 
