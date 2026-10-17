@@ -41,8 +41,14 @@ ATRIA_BASE_URL = os.environ.get("ATRIA_BASE_URL",
                                 "https://api.atria-asi.ai/v1").rstrip("/")
 ATRIA_MODEL = os.environ.get("ATRIA_MODEL", "Atria-Dawn-Preview")
 GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta"
-# Free-tier model ladder: try newest flash first, fall back if a name 404s.
-GEMINI_MODEL_LADDER = ["gemini-2.5-flash", "gemini-flash-latest",
+# Free-tier model ladder: Gemma open-weight models first (the DEV
+# "Best Use of Gemma" $200 category claim depends on a Gemma model
+# actually generating the digest — digest.json records the wire name
+# used, so the claim stays auditable). 404 on a rung -> next rung;
+# Flash names remain as last-resort fallback.
+GEMINI_MODEL_LADDER = ["gemma-3-27b-it", "gemma-3-12b-it",
+                       "gemma-3-4b-it", "gemma-3-1b-it",
+                       "gemini-2.5-flash", "gemini-flash-latest",
                        "gemini-2.0-flash"]
 
 SNAP = os.path.join(os.path.dirname(os.path.abspath(__file__)),
