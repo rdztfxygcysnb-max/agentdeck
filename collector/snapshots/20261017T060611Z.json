@@ -1,23 +1,11 @@
 {
-  "collected_at": "2026-10-15T05:06:03.669113+00:00",
+  "collected_at": "2026-10-17T06:06:11.906422+00:00",
   "bridges": [
     {
       "bridge": "prisma",
       "url": "https://cge6g9qi3y4uxioefvdim74l.nrt.prisma.build/mcp",
-      "ok": true,
-      "tools": [
-        "run_js",
-        "web_fetch",
-        "notes_write",
-        "notes_read",
-        "notes_list",
-        "pi_task_submit",
-        "pi_task_status"
-      ],
-      "notes": [
-        "(none)"
-      ],
-      "notes_count": 1
+      "ok": false,
+      "error": "ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
     },
     {
       "bridge": "railway",
